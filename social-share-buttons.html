@@ -1,0 +1,176 @@
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<style>
+		body {
+			margin:0px;
+			font-family: Verdana, Geneva, sans-serif;
+		}
+		header, footer, .section {
+			width:100%;
+			padding: 100px 0px;
+			margin:0px;
+		}
+		h1 {
+			color:#FFF;
+			text-align: center;
+			font-weight:200;
+			text-transform:uppercase;
+			font-size:3em;
+			letter-spacing: 0.15em;
+		}
+		header {
+			background-color:#ff7473;
+		}
+		footer {
+			background-color:#34314c;
+		}
+		.share-btn {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.article-container {
+			position: relative;
+			padding:0px;
+			margin:0px;
+		}
+		.article-container .article {
+			width:calc(100% - 200px);
+			margin:0px auto;
+			max-width:800px;
+		}
+		.article-container p {
+			font-family: "Courier New", Courier, monospace;
+			font-size:1.4em;
+			line-height:1.4em;
+		}
+		.article-container .share-btn a {
+			display: block;
+			padding: 10px;
+			text-align: center;
+			color: #FFF;
+			width: 60px;
+			margin: 3px 0px;
+			text-decoration:none;
+			background-color:#47b8e0;
+		}
+		.text-center {
+			text-align:center;
+		}
+		suomen
+	</style>
+</head>
+<body>
+
+<header>
+	<h1>This is an article page example</h1>
+</header>
+<div class="section">
+	<div class="article-container">
+		<div class="share-btn">
+			<a href="#" class="bck-color-blue"><i class="fa fa-linkedin"></i></a>
+			<a href="#" class="bck-color-blue"><i class="fa fa-google"></i></i></a>
+			<a href="#" class="bck-color-blue"><i class="fa fa-twitter"></i></i></a>
+			<a href="#" class="bck-color-blue"><i class="fa fa-facebook"></i></i></a>
+		</div>
+		<div class="article">
+			<h2 class="text-center">This is the article content</h2>
+			<p>
+				This is an example to show how the sharer buttons work.<br />
+				<b>Scroll down</b> and you'll see that the sharer buttons on the left will <b>follow you</b>. Note that they will follow you only in the article section.
+			</p>
+			<p>
+				This is a dumb article just for example. I din't feel like to copy and paste Lorem Ipsum so I translated it from Latin to German and from German to English.
+			</p>
+			<p>
+				<b>Lorem Ipsum</b> pain let it be residential, Minneapolis undergraduate competition, but do occaecat time that effort and pain great some. Over the years, I will come, who nostrud practice school district work but that aliquip advantage from it. But consumer film cupidatat to find a pleasure to no resultant pain football flee. Excepteur cupidatat blacks are not proident, it is soothing to the soul, that is the fault of my toil, who thought that services are in the desert.
+			</p>
+			<p>
+				Lorem Ipsum pain let it be residential, Minneapolis undergraduate competition, but do occaecat time that effort and pain great some. Over the years, I will come, who nostrud practice school district work but that aliquip advantage from it. But consumer film cupidatat to find a pleasure to no resultant pain football flee. Excepteur cupidatat blacks are not proident, it is soothing to the soul, that is the fault of my toil, who thought that services are in the desert.
+			</p>
+			<p>
+				Lorem Ipsum pain let it be residential, Minneapolis undergraduate competition, but do occaecat time that effort and pain great some. Over the years, I will come, who nostrud practice school district work but that aliquip advantage from it. But consumer film cupidatat to find a pleasure to no resultant pain football flee. <b>Excepteur</b> cupidatat blacks are not proident, it is soothing to the soul, that is the fault of my toil, who thought that services are in the desert.
+			</p>
+
+			<p class="text-center">
+				<b>Special thanks to</b><br />
+				<a href="https://translate.google.com/#la/en/" target="_blank">Goolgle Translator AI</a> for the translation
+			</p>
+			<p class="text-center">
+				<b>Sources</b><br />
+				<a href="https://en.wikipedia.org/wiki/Lorem_ipsum" target="_blank">https://en.wikipedia.org/wiki/Lorem_ipsum</a><br />
+				<a href="http://www.danielefavi.com" target="_blank">www.danielefavi.com</a><br />
+			</p>
+		</div>
+	</div>
+</div>
+<footer>
+	<h1>This is the Footer</h1>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+
+<script>
+	/*
+	 * This function calculates the size of the article container div (with class article-container)
+	 */
+	function setArticleSection() {
+		// top_var is the space between the article-container and the top
+		var top_var = parseInt( $('.article-container').position().top );
+		
+		// height_var is the height in pixel of the article-container
+		var height_var = $('.article-container').height();
+		
+		// bottom_limit_var is the bottom article limit that the sharer buttons have not to exceed
+		var bottom_limit_var = height_var + top_var;
+				
+		// saving the values in a global variable
+		window.sectionArticle = {top:top_var , bottom_limit:bottom_limit_var};
+		
+		console.log(window.sectionArticle);
+	}
+	
+
+	/*
+	 * This function moves the sharer buttons (the div with the class share-btn)
+	 */
+	function moveShareBtns() {
+		// it sums the current vertical position of the scroll bar  with  the height (in pixels) of the browser window
+		// in order to get the bottom position from the top
+		var bottom = $(window).scrollTop() + window.innerHeight;
+		
+		// the position of the sharer buttons have is updated only when the browser bottom position does not exceed the bottom article limit
+		if (window.sectionArticle.bottom_limit > bottom) {
+			// css_top is the position to assign to the sharer buttons from the top
+			var css_top = bottom - window.sectionArticle.top - $('.share-btn').height();			
+			if (css_top < 0) css_top = 0;
+			$('.share-btn').css('top', (css_top-25) ); // the -25 just to move the buttons a little bit up
+		}
+	}
+
+	
+	$(document).ready(function() {
+		setArticleSection();
+		moveShareBtns();
+		
+		// linking the function moveShareBtns on scroll event
+		$(window).scroll(function() {
+			moveShareBtns();
+		});
+		
+		// on browser window resize even it calculate again the positions of the article container rectagular
+		// and move the sharer buttons
+		$(window).resize(function() {
+			setArticleSection();
+			moveShareBtns();
+		});
+		
+	});
+</script>
+
+</body>
+</html>
