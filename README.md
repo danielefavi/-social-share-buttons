@@ -15,5 +15,5 @@ Simple share buttons that follow the reader within the article section only. Thi
 
 <p align="center">
 More info at <br />
-<a href="https://www.danielefavi.com/social-share-buttons/‎">https://www.danielefavi.com/social-share-buttons/</a>
+<a href="https://www.danielefavi.com/social-share-buttons/">https://www.danielefavi.com/social-share-buttons/</a>
 </p>
